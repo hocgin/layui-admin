@@ -152,6 +152,7 @@
         base: '../modules/'
     });
     layui.use(['layer', 'element', 'jquery', 'laytpl', 'tabPage'], (args) => {
+        console.log("v0.0.1");
         let layer = layui.layer,
             element = layui.element,
             tabPage = layui.tabPage,
@@ -230,7 +231,6 @@
             allowClose: false
         });
         let router = layui.router(window.location.hash);
-
 
 
 
