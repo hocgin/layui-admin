@@ -19,7 +19,8 @@ layui.define(['jquery', 'element'], (exports) => {
             $tabElem = $('.layui-tab[lay-filter=' + filter + ']'),
             $titElem = $tabElem.children(TITLE),
             $contElem = $('.layui-tab-content[lay-filter=' + filter + ']'),
-            li = '<li lay-id="' + (options.id || '') + '" allow-close="' + (options.allowClose) + '">' + (options.title || 'unnaming') + '</li>',
+            allowClose = eval(options.allowClose || false),
+            li = '<li lay-id="' + (options.id || '') + '" allow-close="' + (allowClose) + '">' + (options.title || 'unnaming') + '</li>',
             CLOSE = 'layui-tab-close'
         ;
 
@@ -27,7 +28,7 @@ layui.define(['jquery', 'element'], (exports) => {
             // tab
             let $li = $(li);
             $titElem.append($li);
-            if (options.allowClose
+            if (allowClose
                 && !$li.find('.' + CLOSE)[0]) {
                 let $close = $('<i class="layui-icon layui-unselect ' + CLOSE + '">&#x1006;</i>');
                 $close.on('click', call.tabDelete);
@@ -93,11 +94,11 @@ layui.define(['jquery', 'element'], (exports) => {
                 THIS = 'layui-this',
                 index = $li.index()
                 , $parents = $li.parents('.layui-tab').eq(0)
-                , ALLOW_CLOSE = 'allow-close'
+                , allowClose = eval($li.attr('allow-close')) || false
                 , item = $('.layui-tab-content').children('.layui-tab-item').eq(index)
             ;
 
-            if ($li.attr(ALLOW_CLOSE) === 'false') { // =false
+            if (!allowClose) { // =false
                 return;
             }
             if ($li.hasClass(THIS)) {
