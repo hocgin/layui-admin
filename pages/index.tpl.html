@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../libs/layui/css/layui.css">
+    <link rel="stylesheet" href="../core/main.css">
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin ext-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">layui 后台布局</div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item">
+                <a href="javascript:;" layadmin-event="flexible" title="侧边伸缩">
+                    <i class="layui-icon layui-icon-shrink-right" id="LAY_app_flexible"></i>
+                </a>
+            </li>
+            <li class="layui-nav-item layui-hide-xs" lay-unselect>
+                <a href="http://www.layui.com/admin/" target="_blank" title="前台">
+                    <i class="layui-icon layui-icon-website"></i>
+                </a>
+            </li>
+            <li class="layui-nav-item" lay-unselect>
+                <a href="javascript:;" layadmin-event="refresh" title="刷新">
+                    <i class="layui-icon layui-icon-refresh"></i>
+                </a>
+            </li>
+            <li class="layui-nav-item"><a href="">控制台</a></li>
+            <li class="layui-nav-item"><a href="">商品管理</a></li>
+            <li class="layui-nav-item"><a href="">用户</a></li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">其它系统</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">邮件管理</a></dd>
+                    <dd><a href="">消息管理</a></dd>
+                    <dd><a href="">授权管理</a></dd>
+                </dl>
+            </li>
+        </ul>
+        <ul class="layui-nav layui-layout-right" lay-filter="layout-nav-right">
+            <li class="layui-nav-item" lay-unselect="">
+                <a lay-href="app/message/" layadmin-event="message">
+                    <i class="layui-icon layui-icon-notice"></i>
+                    <!-- 如果有新消息，则显示小圆点 -->
+                    <span class="layui-badge-dot"></span>
+                    <span class="layui-badge-dot"></span>
+                </a>
+            </li>
+            <li class="layui-nav-item layui-hide-xs" lay-unselect="">
+                <a href="javascript:;" layadmin-event="theme">
+                    <i class="layui-icon layui-icon-theme"></i>
+                </a>
+            </li>
+            <li class="layui-nav-item layui-hide-xs" lay-unselect="" style="">
+                <a href="javascript:;" layadmin-event="note">
+                    <i class="layui-icon layui-icon-note"></i>
+                </a>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+                    贤心
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">基本资料</a></dd>
+                    <dd><a href="">安全设置</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item layui-hide-xs" lay-unselect lay-event="about">
+                <a href="javascript:;">
+                    <i class="layui-icon layui-icon-more-vertical"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a class="" href="javascript:;">所有商品</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">列表一</a></dd>
+                        <dd><a href="javascript:;">列表二</a></dd>
+                        <dd><a href="javascript:;">列表三</a></dd>
+                        <dd><a href="">超链接</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">解决方案</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">列表一</a></dd>
+                        <dd><a href="javascript:;">列表二</a></dd>
+                        <dd><a href="">超链接</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="">云市场</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="/layui-admin/pages/demo.html" data-menu>Demo</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="/layui-admin/pages/demo/baidu.html" data-menu>Baidu</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="ext-page-tabs">
+        <div class="layui-icon ext-tabs-control ext-tabs-control-prev"></div>
+        <div class="layui-icon ext-tabs-control ext-tabs-control-next"></div>
+        <div class="layui-icon ext-tabs-control ext-tabs-control-down">
+            <ul class="layui-nav layout-tabs-select" lay-filter="tabs-option">
+                <li class="layui-nav-item" lay-unselect>
+                    <a href="javascript:;">
+                        <span class="layui-nav-more"></span>
+                    </a>
+                    <dl class="layui-nav-child layui-anim-fadein layui-anim layui-anim-upbit">
+                        <dd lay-event="closeThisTab"><a href="javascript:;;">关闭当前标签</a></dd>
+                        <dd lay-event="closeOtherTab"><a href="javascript:;;">关闭其他标签</a></dd>
+                        <dd lay-event="closeAllTab"><a href="javascript:;;">关闭所有标签</a></dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+        <div class="layui-tab layui-tab-brief" lay-filter="layout-tab-pages" lay-unauto lay-allowClose="true">
+            <ul class="layui-tab-title"></ul>
+        </div>
+    </div>
+    <div class="layui-body">
+        <div class="layui-tab-content" lay-filter="layout-tab-pages"></div>
+    </div>
+    <div class="layui-footer">
+        <!-- 底部固定区域 -->
+        © layui.com - 底部固定区域
+    </div>
+</div>
+
+<script src="../libs/layui/layui.js"></script>
+<script>
+    layui.config({
+        debug: true,
+        base: '/layui-admin/modules/'
+    });
+    layui.use(['layer', 'element', 'jquery', 'laytpl', 'tabPage'], (args) => {
+        let layer = layui.layer,
+            element = layui.element,
+            tabPage = layui.tabPage,
+            laytpl = layui.laytpl,
+            $ = layui.jquery
+        ;
+        $('a[data-menu]').on('click', (e) => {
+            let $this = $(e.target),
+                THIS = 'layui-this',
+                href = $this.attr('href'),
+                $clickedTab = $('.ext-page-tabs .layui-tab-title li[lay-id="' + href + '"]')
+            ;
+            e.preventDefault();
+            if (!href || $clickedTab[0]) {
+                if ($clickedTab[0] && !$clickedTab.hasClass(THIS)) { // 未被点击
+                    tabPage.tabChange($clickedTab.eq(0));
+                }
+                return false;
+            }
+            tabPage.tabAdd({
+                href: href,
+                id: href,
+                title: $this.text(),
+                allowClose: true
+            });
+            return false;
+        });
+        $('.ext-tabs-control-prev').on('click', (e) => {
+            tabPage.preTabPage();
+        });
+        $('.ext-tabs-control-next').on('click', (e) => {
+            tabPage.nextTabPage();
+        });
+        element.on('nav(tabs-option)', (elem) => {
+            let $this = $(elem),
+                event = $this.attr('lay-event');
+            if (event === 'closeThisTab') {
+                tabPage.closeThisTab();
+            } else if (event === 'closeAllTab') {
+                tabPage.closeAllTab();
+            } else if (event === 'closeOtherTab') {
+                tabPage.closeOtherTab();
+            }
+        });
+        element.on('nav(layout-nav-right)', (elem) => {
+            let $this = $(elem);
+            let event = $this.attr('lay-event');
+            if (event === 'about') {
+                layer.open({
+                    title: '版本信息',
+                    area: ['300px'],
+                    offset: 'r',
+                    type: 1,
+                    skin: 'layui-anim layui-anim-rl layui-layer-adminRight', //样式类名
+                    closeBtn: 0, //不显示关闭按钮
+                    anim: -1,
+                    shadeClose: true, //开启遮罩关闭
+                    content: '内容'
+                });
+            }
+        });
+
+        /**
+         * Debug
+         */
+        tabPage.tabAdd( {
+            href: '/layui-admin/pages/demo/baidu.html',
+            id: '/layui-admin/pages/demo/baidu.html',
+            title: '<i class="layui-icon layui-icon-home"></i>',
+            allowClose: false
+        });
+
+    });
+</script>
+</body>
+</html>
