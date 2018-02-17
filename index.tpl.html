@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="libs/layui/css/layui.css">
-    <link rel="stylesheet" href="core/main.css">
+    <link rel="stylesheet" href="libs/hint/hint.min.css">
+    <link rel="stylesheet" href="dist/css/main.css">
 </head>
 <body class="layui-layout-body">
 <!---->
@@ -16,17 +17,17 @@
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-left" lay-filter="layout-nav-tools">
             <li class="layui-nav-item" lay-unselect lay-event="shrink">
-                <a href="javascript:;" title="侧边伸缩">
+                <a href="javascript:;" class="hint--bottom" aria-label="侧边伸缩">
                     <i class="layui-icon layui-icon-shrink-right"></i>
                 </a>
             </li>
             <li class="layui-nav-item layui-hide-xs" lay-unselect>
-                <a href="http://www.layui.com/admin/" target="_blank" title="前台">
+                <a href="http://www.layui.com/admin/" class="hint--bottom" target="_blank" aria-label="前台">
                     <i class="layui-icon layui-icon-website"></i>
                 </a>
             </li>
             <li class="layui-nav-item" lay-unselect lay-event="refresh">
-                <a href="javascript:;" title="刷新">
+                <a href="javascript:;" class="hint--bottom" aria-label="刷新">
                     <i class="layui-icon layui-icon-refresh"></i>
                 </a>
             </li>
@@ -152,7 +153,7 @@
 <script>
     layui.config({
         debug: true,
-        base: './modules/'
+        base: './dist/modules/'
     });
     layui.use(['layer', 'element', 'jquery', 'laytpl', 'tabPage'], (args) => {
         let layer = layui.layer,
