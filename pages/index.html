@@ -75,6 +75,9 @@
             </li>
         </ul>
     </div>
+    <script>
+
+    </script>
 
     <div class="layui-side layui-bg-black">
         <div class="layui-side-scroll">
@@ -101,10 +104,13 @@
                     <a href="">云市场</a>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="/layui-admin/pages/demo.html" data-menu>Demo</a>
+                    <a href="./demo.html" data-menu>Demo</a>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="/layui-admin/pages/demo/baidu.html" data-menu>Baidu</a>
+                    <a href="./demo/baidu.html" data-menu>Baidu</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="./timeline.html" data-menu>时间线</a>
                 </li>
             </ul>
         </div>
@@ -126,7 +132,7 @@
                 </li>
             </ul>
         </div>
-        <div class="layui-tab layui-tab-brief" lay-filter="layout-tab-pages" lay-unauto lay-allowClose="true">
+        <div class="layui-tab layui-tab-brief" lay-filter="layout-tab-pages" lay-unauto lay-allowClose="false">
             <ul class="layui-tab-title"></ul>
         </div>
     </div>
@@ -143,9 +149,10 @@
 <script>
     layui.config({
         debug: true,
-        base: '/layui-admin/modules/'
+        base: '../modules/'
     });
     layui.use(['layer', 'element', 'jquery', 'laytpl', 'tabPage'], (args) => {
+        console.log("v0.0.1");
         let layer = layui.layer,
             element = layui.element,
             tabPage = layui.tabPage,
@@ -158,7 +165,14 @@
                 href = $this.attr('href'),
                 $clickedTab = $('.ext-page-tabs .layui-tab-title li[lay-id="' + href + '"]')
             ;
-            e.preventDefault();
+
+            let hash = window.location.hash;
+            if (/^#\//.test(hash)) {
+                hash = hash.replace(/^#\/.*/, '#' + href);
+            } else {
+                hash += '#' + href;
+            }
+            window.location.hash = hash;
             if (!href || $clickedTab[0]) {
                 if ($clickedTab[0] && !$clickedTab.hasClass(THIS)) { // 未被点击
                     tabPage.tabChange($clickedTab.eq(0));
@@ -207,17 +221,22 @@
                 });
             }
         });
-
         /**
          * Debug
          */
-        tabPage.tabAdd( {
-            href: '/layui-admin/pages/demo/baidu.html',
-            id: '/layui-admin/pages/demo/baidu.html',
+        tabPage.tabAdd({
+            href: './demo.html',
+            id: './demo.html',
             title: '<i class="layui-icon layui-icon-home"></i>',
             allowClose: false
         });
+        let router = layui.router(window.location.hash);
 
+
+
+        if (!!router.href) {
+            $('a[data-menu][href$="'+router.href+'"]').trigger('click');
+        }
     });
 </script>
 </body>
