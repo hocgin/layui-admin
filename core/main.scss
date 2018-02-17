@@ -150,6 +150,69 @@ debug
   overflow: auto;
 }
 
+@media screen and (max-width: 992px) {
+  .ext-layout-admin {
+    .layui-layout-left, .layui-body, .ext-page-tabs, .layui-footer {
+      left: 0;
+    }
+    .layui-side, .layui-logo {
+      transform: translate3d(-200px, 0, 0);
+      -webkit-transform: translate3d(-200px, 0, 0);
+      width: 200px;
+    }
+
+    .layui-layout-left, .layui-body, .ext-page-tabs, .layui-footer, .layui-side, .layui-logo, .layui-layout-right {
+      transition: all .3s;
+      -webkit-transition: all .3s;
+    }
+
+  }
+}
+
+/**
+ * sm大小时点击张开按钮
+ */
+.layout-side-spread-sm {
+
+  .layui-side, .layui-logo {
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+  }
+  .layui-layout-left,
+  .layui-body,
+  .ext-page-tabs,
+  .layui-footer,
+  .layui-layout-right {
+    //left: 0;
+    transform: translate3d(200px, 0, 0);
+    -webkit-transform: translate3d(200px, 0, 0);
+  }
+}
+/**
+ * 平常点击
+ */
+.layadmin-side-shrink {
+  .layui-body, .ext-page-tabs, .layui-footer {
+    left: 0;
+  }
+  .layui-layout-left {
+    left: 50px;
+  }
+  .layui-logo {
+    span {
+      display: none;
+    }
+    background-image: url("../i/logo.png");
+    background-size: 100% 100%;
+    width: 60px;
+  }
+  .layui-side {
+    transform: translate3d(-200px, 0, 0);
+    -webkit-transform: translate3d(-200px, 0, 0);
+    width: 200px;
+  }
+}
+
 @keyframes layui-rl {
   0% {
     transform: translate3d(100%, 0, 0);
