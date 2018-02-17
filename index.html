@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="core/main.css">
 </head>
 <body class="layui-layout-body">
-<!---->
 <div class="layui-layout layui-layout-admin ext-layout-admin">
     <div class="layui-header">
         <div class="layui-logo">
@@ -241,9 +240,11 @@
             title: '<i class="layui-icon layui-icon-home"></i>',
             allowClose: false
         });
+
+        /**
+         *
+         */
         let router = layui.router(window.location.hash);
-
-
         if (!!router.href) {
             $('a[data-menu][href$="' + router.href + '"]').trigger('click');
         }
