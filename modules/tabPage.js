@@ -3,6 +3,9 @@ layui.define(['jquery', 'element'], (exports) => {
         element = layui.element,
         MOD_NAME = 'tabPage',
         FILTER_LAYOUT_TAB_PAGES = 'layout-tab-pages',
+        THIS = 'layui-this',
+        SHOW = 'layui-show',
+        LAY_ID = 'lay-id',
         TabPage = function () {
             this.config = {};
         };
@@ -36,8 +39,8 @@ layui.define(['jquery', 'element'], (exports) => {
             }
 
             // content
-            $contElem.children('.layui-tab-item').removeClass('layui-show');
-            $contElem.append('<div class="layui-tab-item layui-show" lay-id="' + (options.id || '') + '">' + (html || '') + '</div>');
+            $contElem.children('.layui-tab-item').removeClass(SHOW);
+            $contElem.append('<div class="layui-tab-item ' + SHOW + '" lay-id="' + (options.id || '') + '">' + (html || '') + '</div>');
             element.tabChange(filter, options.href);
 
             // 调整
@@ -45,6 +48,13 @@ layui.define(['jquery', 'element'], (exports) => {
         });
 
         return this;
+    };
+    TabPage.prototype.refresh = function (filter = FILTER_LAYOUT_TAB_PAGES) {
+        let $item = $('.layui-tab-content[lay-filter="' + filter + '"]').children('.layui-tab-item.' + SHOW)
+        ;
+        $.get($item.attr(LAY_ID), function (html) {
+            $item.html(html)
+        });
     };
     TabPage.prototype.preTabPage = function (filter = FILTER_LAYOUT_TAB_PAGES) {
         let TITLE = '.layui-tab-title',
@@ -61,15 +71,12 @@ layui.define(['jquery', 'element'], (exports) => {
 
     };
     TabPage.prototype.closeOtherTab = function (filter = FILTER_LAYOUT_TAB_PAGES) {
-        let TITLE = '.layui-tab-title',
-            $tabElem = $('.layui-tab[lay-filter=' + filter + ']')
+        let $tabElem = $('.layui-tab[lay-filter=' + filter + ']')
         ;
         call.closeOtherTab.call($tabElem);
     };
     TabPage.prototype.closeThisTab = function (filter = FILTER_LAYOUT_TAB_PAGES) {
-        let TITLE = '.layui-tab-title',
-            $tabElem = $('.layui-tab[lay-filter=' + filter + ']')
-        ;
+        let $tabElem = $('.layui-tab[lay-filter=' + filter + ']');
         call.closeThisTab.call($tabElem);
     };
     TabPage.prototype.closeAllTab = function (filter = FILTER_LAYOUT_TAB_PAGES) {
@@ -91,11 +98,10 @@ layui.define(['jquery', 'element'], (exports) => {
     let call = {
         tabDelete(e, $that) {
             let $li = $that || $(this).parent(),
-                THIS = 'layui-this',
                 index = $li.index()
                 , $parents = $li.parents('.layui-tab').eq(0)
-                , allowClose = eval($li.attr('allow-close')) || false
-                , item = $('.layui-tab-content').children('.layui-tab-item').eq(index)
+                , allowClose = (eval($li.attr('allow-close')) || false),
+                item = $('.layui-tab-content[lay-filter="' + FILTER_LAYOUT_TAB_PAGES + '"]').children('.layui-tab-item').eq(index)
             ;
 
             if (!allowClose) { // =false
@@ -115,8 +121,6 @@ layui.define(['jquery', 'element'], (exports) => {
         },
         tabClick(e, $liElem, index) {
             let $this = $liElem || $(this), // tab
-                THIS = 'layui-this',
-                SHOW = 'layui-show',
                 item = $('.layui-tab-content[lay-filter="' + FILTER_LAYOUT_TAB_PAGES + '"]').children('.layui-tab-item')
             ;
             $this.addClass(THIS).siblings().removeClass(THIS);
@@ -172,8 +176,7 @@ layui.define(['jquery', 'element'], (exports) => {
         closeOtherTab($that) {
             let $this = $that || $(this), // tabElem
                 $title = $this.children('.layui-tab-title'),
-                $tabs = $title.children('li'),
-                THIS = 'layui-this'
+                $tabs = $title.children('li')
             ;
             let $otherTabs = $tabs.not('.' + THIS);
             $otherTabs.each((i, tab) => {
@@ -184,8 +187,7 @@ layui.define(['jquery', 'element'], (exports) => {
         closeThisTab($that) {
             let $this = $that || $(this), // tabElem
                 $title = $this.children('.layui-tab-title'),
-                $tabs = $title.children('li'),
-                THIS = 'layui-this'
+                $tabs = $title.children('li')
             ;
             let $thisTab = $tabs.filter('.' + THIS);
             call.tabDelete(null, $thisTab);

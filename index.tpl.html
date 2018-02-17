@@ -25,7 +25,7 @@
                     <i class="layui-icon layui-icon-website"></i>
                 </a>
             </li>
-            <li class="layui-nav-item" lay-unselect>
+            <li class="layui-nav-item" lay-unselect lay-event="refresh">
                 <a href="javascript:;" title="刷新">
                     <i class="layui-icon layui-icon-refresh"></i>
                 </a>
@@ -232,7 +232,12 @@
                 }else {
                     $('.ext-layout-admin').toggleClass('layadmin-side-shrink');
                 }
+            }else if (event === 'refresh') {
+                tabPage.refresh();
             }
+        });
+        $(window).resize(()=> {
+            $('.layout-side-spread-sm').removeClass('layout-side-spread-sm');
         });
         /**
          * index
