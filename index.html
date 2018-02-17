@@ -7,14 +7,17 @@
     <link rel="stylesheet" href="core/main.css">
 </head>
 <body class="layui-layout-body">
+<!---->
 <div class="layui-layout layui-layout-admin ext-layout-admin">
     <div class="layui-header">
-        <div class="layui-logo">layui 后台布局</div>
+        <div class="layui-logo">
+            <span>layui 后台布局</span>
+        </div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
-        <ul class="layui-nav layui-layout-left">
-            <li class="layui-nav-item">
-                <a href="javascript:;" layadmin-event="flexible" title="侧边伸缩">
-                    <i class="layui-icon layui-icon-shrink-right" id="LAY_app_flexible"></i>
+        <ul class="layui-nav layui-layout-left" lay-filter="layout-nav-tools">
+            <li class="layui-nav-item" lay-unselect lay-event="shrink">
+                <a href="javascript:;" title="侧边伸缩">
+                    <i class="layui-icon layui-icon-shrink-right"></i>
                 </a>
             </li>
             <li class="layui-nav-item layui-hide-xs" lay-unselect>
@@ -23,38 +26,36 @@
                 </a>
             </li>
             <li class="layui-nav-item" lay-unselect>
-                <a href="javascript:;" layadmin-event="refresh" title="刷新">
+                <a href="javascript:;" title="刷新">
                     <i class="layui-icon layui-icon-refresh"></i>
                 </a>
             </li>
-            <li class="layui-nav-item"><a href="">控制台</a></li>
-            <li class="layui-nav-item"><a href="">商品管理</a></li>
-            <li class="layui-nav-item"><a href="">用户</a></li>
-            <li class="layui-nav-item">
-                <a href="javascript:;">其它系统</a>
-                <dl class="layui-nav-child">
-                    <dd><a href="">邮件管理</a></dd>
-                    <dd><a href="">消息管理</a></dd>
-                    <dd><a href="">授权管理</a></dd>
-                </dl>
-            </li>
+            <!--<li class="layui-nav-item layui-hide-xs"><a href="">控制台</a></li>-->
+            <!--<li class="layui-nav-item layui-hide-xs">-->
+            <!--<a href="javascript:;">其它系统</a>-->
+            <!--<dl class="layui-nav-child">-->
+            <!--<dd><a href="">邮件管理</a></dd>-->
+            <!--<dd><a href="">消息管理</a></dd>-->
+            <!--<dd><a href="">授权管理</a></dd>-->
+            <!--</dl>-->
+            <!--</li>-->
         </ul>
         <ul class="layui-nav layui-layout-right" lay-filter="layout-nav-right">
-            <li class="layui-nav-item" lay-unselect="">
-                <a lay-href="app/message/" layadmin-event="message">
+            <li class="layui-nav-item">
+                <a lay-href="app/message/">
                     <i class="layui-icon layui-icon-notice"></i>
                     <!-- 如果有新消息，则显示小圆点 -->
                     <span class="layui-badge-dot"></span>
                     <span class="layui-badge-dot"></span>
                 </a>
             </li>
-            <li class="layui-nav-item layui-hide-xs" lay-unselect="">
-                <a href="javascript:;" layadmin-event="theme">
+            <li class="layui-nav-item layui-hide-xs">
+                <a href="javascript:;">
                     <i class="layui-icon layui-icon-theme"></i>
                 </a>
             </li>
-            <li class="layui-nav-item layui-hide-xs" lay-unselect="" style="">
-                <a href="javascript:;" layadmin-event="note">
+            <li class="layui-nav-item layui-hide-xs">
+                <a href="javascript:;">
                     <i class="layui-icon layui-icon-note"></i>
                 </a>
             </li>
@@ -68,7 +69,7 @@
                     <dd><a href="">安全设置</a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item layui-hide-xs" lay-unselect lay-event="about">
+            <li class="layui-nav-item" lay-unselect lay-event="about">
                 <a href="javascript:;">
                     <i class="layui-icon layui-icon-more-vertical"></i>
                 </a>
@@ -82,7 +83,7 @@
     <div class="layui-side layui-bg-black">
         <div class="layui-side-scroll">
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-            <ul class="layui-nav layui-nav-tree" lay-filter="test">
+            <ul class="layui-nav layui-nav-tree">
                 <li class="layui-nav-item layui-nav-itemed">
                     <a class="" href="javascript:;">所有商品</a>
                     <dl class="layui-nav-child">
@@ -115,6 +116,8 @@
             </ul>
         </div>
     </div>
+
+    <!-- Body -->
     <div class="ext-page-tabs">
         <div class="layui-icon ext-tabs-control ext-tabs-control-prev"></div>
         <div class="layui-icon ext-tabs-control ext-tabs-control-next"></div>
@@ -132,7 +135,7 @@
                 </li>
             </ul>
         </div>
-        <div class="layui-tab layui-tab-brief" lay-filter="layout-tab-pages" lay-unauto lay-allowClose="false">
+        <div class="layui-tab layui-tab-brief" lay-filter="layout-tab-pages" lay-unauto>
             <ul class="layui-tab-title"></ul>
         </div>
     </div>
@@ -150,9 +153,8 @@
     layui.config({
         debug: true,
         base: './modules/'
-    }).use('tabPage');
+    });
     layui.use(['layer', 'element', 'jquery', 'laytpl', 'tabPage'], (args) => {
-        console.log("v0.0.1");
         let layer = layui.layer,
             element = layui.element,
             tabPage = layui.tabPage,
@@ -221,6 +223,15 @@
                 });
             }
         });
+        element.on('nav(layout-nav-tools)', (elem) => {
+            let $this = $(elem);
+            let event = $this.attr('lay-event');
+            if (event === 'shrink' && $(window).width() < 992) {
+                $('.ext-layout-admin').toggleClass('layout-side-spread-sm');
+            }else {
+                $('.ext-layout-admin').toggleClass('layadmin-side-shrink');
+            }
+        });
         /**
          * Debug
          */
@@ -233,9 +244,8 @@
         let router = layui.router(window.location.hash);
 
 
-
         if (!!router.href) {
-            $('a[data-menu][href$="'+router.href+'"]').trigger('click');
+            $('a[data-menu][href$="' + router.href + '"]').trigger('click');
         }
     });
 </script>
