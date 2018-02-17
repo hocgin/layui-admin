@@ -167,8 +167,8 @@
             ;
 
             let hash = window.location.hash;
-            if (/^#\//.test(hash)) {
-                hash = hash.replace(/^#\/.*/, '#' + href);
+            if (/^#.*/.test(hash)) {
+                hash = hash.replace(/^#.*/, '#' + href);
             } else {
                 hash += '#' + href;
             }
