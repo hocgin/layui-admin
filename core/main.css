@@ -87,6 +87,9 @@
     top: 40px;
     left: auto;
     right: 0; }
+.ext-layout-admin .layui-layout-left, .ext-layout-admin .layui-body, .ext-layout-admin .ext-page-tabs, .ext-layout-admin .layui-footer, .ext-layout-admin .layui-side, .ext-layout-admin .layui-logo, .ext-layout-admin .layui-layout-right {
+  transition: all .3s;
+  -webkit-transition: all .3s; }
 
 /**
 debug
@@ -108,10 +111,7 @@ debug
   .ext-layout-admin .layui-side, .ext-layout-admin .layui-logo {
     transform: translate3d(-200px, 0, 0);
     -webkit-transform: translate3d(-200px, 0, 0);
-    width: 200px; }
-  .ext-layout-admin .layui-layout-left, .ext-layout-admin .layui-body, .ext-layout-admin .ext-page-tabs, .ext-layout-admin .layui-footer, .ext-layout-admin .layui-side, .ext-layout-admin .layui-logo, .ext-layout-admin .layui-layout-right {
-    transition: all .3s;
-    -webkit-transition: all .3s; } }
+    width: 200px; } }
 /**
  * sm大小时点击张开按钮
  */
