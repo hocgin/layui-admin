@@ -1,3 +1,8 @@
+html {
+  background-color: #f2f2f2;
+  color: #666;
+}
+
 .ext-layout-admin {
 
   .ext-iframe {
@@ -31,7 +36,7 @@
     z-index: 999;
     left: 200px;
     .layui-tab {
-      //margin: 0 80px 0 40px;
+      height: 40px;
       margin: 0;
       overflow: hidden;
       .layui-tab-title {
@@ -109,11 +114,10 @@
 
   }
 
-  //.layui-tab-content {
-  //  .layout-tab-content-item {
-  //    display: none;
-  //  }
-  //}
+  .layui-layout-left[lay-filter="layout-nav-tools"] .layui-icon,
+  .layui-icon-more-vertical {
+    font-weight: bold;
+  }
 
   .layout-tabs-select {
     position: absolute;
@@ -132,7 +136,11 @@
       right: 0;
     }
   }
-
+  .ext-layout-side {
+    .layui-icon {
+      margin-right: 5px;
+    }
+  }
 
   .layui-layout-left, .layui-body, .ext-page-tabs, .layui-footer, .layui-side, .layui-logo, .layui-layout-right {
     transition: all .3s;
@@ -146,6 +154,11 @@ debug
 .layui-anim-lr, .layui-anim-rl.layer-anim-close {
   -webkit-animation-name: layui-lr;
   animation-name: layui-lr;
+}
+
+.layui-anim-rl {
+  -webkit-animation-name: layui-rl;
+  animation-name: layui-rl;
 }
 
 .layui-layer-adminRight {
@@ -189,6 +202,7 @@ debug
     -webkit-transform: translate3d(200px, 0, 0);
   }
 }
+
 /**
  * 平常点击
  */

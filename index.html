@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="libs/layui/css/layui.css">
+    <link rel="stylesheet" href="libs/hint/hint.min.css">
     <link rel="stylesheet" href="dist/css/main.css">
 </head>
 <body class="layui-layout-body">
-<!---->
 <div class="layui-layout layui-layout-admin ext-layout-admin">
     <div class="layui-header">
         <div class="layui-logo">
@@ -16,17 +16,17 @@
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-left" lay-filter="layout-nav-tools">
             <li class="layui-nav-item" lay-unselect lay-event="shrink">
-                <a href="javascript:;" title="侧边伸缩">
+                <a href="javascript:;" class="hint--bottom" aria-label="侧边伸缩">
                     <i class="layui-icon layui-icon-shrink-right"></i>
                 </a>
             </li>
             <li class="layui-nav-item layui-hide-xs" lay-unselect>
-                <a href="http://www.layui.com/admin/" target="_blank" title="前台">
+                <a href="http://www.layui.com/admin/" class="hint--bottom" target="_blank" aria-label="前台">
                     <i class="layui-icon layui-icon-website"></i>
                 </a>
             </li>
-            <li class="layui-nav-item" lay-unselect>
-                <a href="javascript:;" title="刷新">
+            <li class="layui-nav-item" lay-unselect lay-event="refresh">
+                <a href="javascript:;" class="hint--bottom" aria-label="刷新">
                     <i class="layui-icon layui-icon-refresh"></i>
                 </a>
             </li>
@@ -41,7 +41,7 @@
             <!--</li>-->
         </ul>
         <ul class="layui-nav layui-layout-right" lay-filter="layout-nav-right">
-            <li class="layui-nav-item">
+            <li class="layui-nav-item" lay-unselect>
                 <a lay-href="app/message/">
                     <i class="layui-icon layui-icon-notice"></i>
                     <!-- 如果有新消息，则显示小圆点 -->
@@ -49,12 +49,12 @@
                     <span class="layui-badge-dot"></span>
                 </a>
             </li>
-            <li class="layui-nav-item layui-hide-xs">
+            <li class="layui-nav-item layui-hide-xs" lay-unselect>
                 <a href="javascript:;">
                     <i class="layui-icon layui-icon-theme"></i>
                 </a>
             </li>
-            <li class="layui-nav-item layui-hide-xs">
+            <li class="layui-nav-item layui-hide-xs" lay-unselect>
                 <a href="javascript:;">
                     <i class="layui-icon layui-icon-note"></i>
                 </a>
@@ -62,7 +62,7 @@
             <li class="layui-nav-item">
                 <a href="javascript:;">
                     <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
-                    贤心
+                    hocgin
                 </a>
                 <dl class="layui-nav-child">
                     <dd><a href="">基本资料</a></dd>
@@ -80,14 +80,19 @@
 
     </script>
 
-    <div class="layui-side layui-bg-black">
+    <div class="layui-side layui-bg-black ext-layout-side">
         <div class="layui-side-scroll">
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree">
                 <li class="layui-nav-item layui-nav-itemed">
-                    <a class="" href="javascript:;">所有商品</a>
+                    <a class="" href="javascript:;">
+                        <i class="layui-icon layui-icon-website"></i>
+                        <cite>所有商品</cite>
+                    </a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">列表一</a></dd>
+                        <dd><a href="javascript:;">
+                            <cite>列表一</cite>
+                        </a></dd>
                         <dd><a href="javascript:;">列表二</a></dd>
                         <dd><a href="javascript:;">列表三</a></dd>
                         <dd><a href="">超链接</a></dd>
@@ -123,7 +128,7 @@
         <div class="layui-icon ext-tabs-control ext-tabs-control-next"></div>
         <div class="layui-icon ext-tabs-control ext-tabs-control-down">
             <ul class="layui-nav layout-tabs-select" lay-filter="tabs-option">
-                <li class="layui-nav-item" lay-unselect>
+                <li class="layui-nav-item">
                     <a href="javascript:;">
                         <span class="layui-nav-more"></span>
                     </a>
@@ -152,105 +157,8 @@
 <script>
     layui.config({
         debug: true,
-        base: './modules/'
-    });
-    layui.use(['layer', 'element', 'jquery', 'laytpl', 'tabPage'], (args) => {
-        let layer = layui.layer,
-            element = layui.element,
-            tabPage = layui.tabPage,
-            laytpl = layui.laytpl,
-            $ = layui.jquery
-        ;
-        $('a[data-menu]').on('click', (e) => {
-            let $this = $(e.target),
-                THIS = 'layui-this',
-                href = $this.attr('href'),
-                $clickedTab = $('.ext-page-tabs .layui-tab-title li[lay-id="' + href + '"]')
-            ;
-
-            let hash = window.location.hash;
-            if (/^#.*/.test(hash)) {
-                hash = hash.replace(/^#.*/, '#' + href);
-            } else {
-                hash += '#' + href;
-            }
-            window.location.hash = hash;
-            if (!href || $clickedTab[0]) {
-                if ($clickedTab[0] && !$clickedTab.hasClass(THIS)) { // 未被点击
-                    tabPage.tabChange($clickedTab.eq(0));
-                }
-                return false;
-            }
-            tabPage.tabAdd({
-                href: href,
-                id: href,
-                title: $this.text(),
-                allowClose: true
-            });
-            return false;
-        });
-        $('.ext-tabs-control-prev').on('click', (e) => {
-            tabPage.preTabPage();
-        });
-        $('.ext-tabs-control-next').on('click', (e) => {
-            tabPage.nextTabPage();
-        });
-        element.on('nav(tabs-option)', (elem) => {
-            let $this = $(elem),
-                event = $this.attr('lay-event');
-            if (event === 'closeThisTab') {
-                tabPage.closeThisTab();
-            } else if (event === 'closeAllTab') {
-                tabPage.closeAllTab();
-            } else if (event === 'closeOtherTab') {
-                tabPage.closeOtherTab();
-            }
-        });
-        element.on('nav(layout-nav-right)', (elem) => {
-            let $this = $(elem);
-            let event = $this.attr('lay-event');
-            if (event === 'about') {
-                layer.open({
-                    title: '版本信息',
-                    area: ['300px'],
-                    offset: 'r',
-                    type: 1,
-                    skin: 'layui-anim layui-anim-rl layui-layer-adminRight', //样式类名
-                    closeBtn: 0, //不显示关闭按钮
-                    anim: -1,
-                    shadeClose: true, //开启遮罩关闭
-                    content: '内容'
-                });
-            }
-        });
-        element.on('nav(layout-nav-tools)', (elem) => {
-            let $this = $(elem);
-            let event = $this.attr('lay-event');
-            if (event === 'shrink') {
-                if ($(window).width() < 992) {
-                    $('.ext-layout-admin').toggleClass('layout-side-spread-sm');
-                }else {
-                    $('.ext-layout-admin').toggleClass('layadmin-side-shrink');
-                }
-            }
-        });
-        /**
-         * index
-         */
-        tabPage.tabAdd({
-            href: 'pages/demo.html',
-            id: 'pages/demo.html',
-            title: '<i class="layui-icon layui-icon-home"></i>',
-            allowClose: false
-        });
-        /**
-         * route hash
-         */
-        let router = layui.router(window.location.hash);
-        if (!!router.href) {
-            $('a[data-menu][href$="' + router.href + '"]').trigger('click');
-        }
-    });
+        base: './dist/modules/'
+    }).use('tabPage');
 </script>
 </body>
 </html>

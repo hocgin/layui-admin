@@ -1,4 +1,8 @@
 @charset "UTF-8";
+html {
+  background-color: #f2f2f2;
+  color: #666; }
+
 .ext-layout-admin .ext-iframe {
   position: absolute;
   width: 100%;
@@ -23,6 +27,7 @@
   z-index: 999;
   left: 200px; }
   .ext-layout-admin .ext-page-tabs .layui-tab {
+    height: 40px;
     margin: 0;
     overflow: hidden; }
     .ext-layout-admin .ext-page-tabs .layui-tab .layui-tab-title li {
@@ -73,6 +78,9 @@
     border-left: 1px solid #f6f6f6; }
     .ext-layout-admin .ext-page-tabs .ext-tabs-control-down:before {
       content: "\e61a"; }
+.ext-layout-admin .layui-layout-left[lay-filter="layout-nav-tools"] .layui-icon,
+.ext-layout-admin .layui-icon-more-vertical {
+  font-weight: bold; }
 .ext-layout-admin .layout-tabs-select {
   position: absolute;
   left: 0;
@@ -87,6 +95,8 @@
     top: 40px;
     left: auto;
     right: 0; }
+.ext-layout-admin .ext-layout-side .layui-icon {
+  margin-right: 5px; }
 .ext-layout-admin .layui-layout-left, .ext-layout-admin .layui-body, .ext-layout-admin .ext-page-tabs, .ext-layout-admin .layui-footer, .ext-layout-admin .layui-side, .ext-layout-admin .layui-logo, .ext-layout-admin .layui-layout-right {
   transition: all .3s;
   -webkit-transition: all .3s; }
@@ -97,6 +107,10 @@ debug
 .layui-anim-lr, .layui-anim-rl.layer-anim-close {
   -webkit-animation-name: layui-lr;
   animation-name: layui-lr; }
+
+.layui-anim-rl {
+  -webkit-animation-name: layui-rl;
+  animation-name: layui-rl; }
 
 .layui-layer-adminRight {
   top: 60px !important;
