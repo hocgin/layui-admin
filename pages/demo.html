@@ -6,9 +6,8 @@
         let $ = layui.jquery,
             tabPage = layui.tabPage
         ;
-        let i = 0;
         $('#addPage').on('click', () => {
-            let id = 'pages/demo/baidu.html?' + Math.random() +'#'+ i;
+            let id = 'pages/demo/baidu.html?' + Math.random();
             tabPage.tabAdd({
                 href: id,
                 title: id,
