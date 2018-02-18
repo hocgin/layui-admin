@@ -1,19 +1,19 @@
-<div id="view">121</div>
-<script id="TPL_view" type="text/html" template lay-url="./dist/store/menu.json">
-    <ul class="layui-nav layui-nav-tree">
-    </ul>
-</script>
+<button id="addPage">添加 测试 tab </button>
 
 
 <script>
-    layui.use(['jquery', 'laytpl'], () => {
+    layui.use(['jquery', 'laytpl', 'tabPage'], () => {
         let $ = layui.jquery,
-            laytpl = layui.laytpl,
-
-
-            $view = $('#view')
+            tabPage = layui.tabPage
         ;
-
-
+        let i = 0;
+        $('#addPage').on('click', () => {
+            let id = 'pages/demo/baidu.html?' + Math.random() +'#'+ i;
+            tabPage.tabAdd({
+                href: id,
+                title: id,
+                allowClose: true
+            });
+        });
     });
 </script>
