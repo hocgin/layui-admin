@@ -35,16 +35,16 @@ layui.define(['jquery', 'element', 'laytpl'], (exports) => {
             CLOSE = 'layui-tab-close'
         ;
 
-        // tab
-        let $li = $(li);
-        $titElem.append($li);
-        if (allowClose
-            && !$li.find('.' + CLOSE)[0]) {
-            let $close = $('<i class="layui-icon layui-unselect ' + CLOSE + '">&#x1006;</i>');
-            $close.on('click', call.tabDelete);
-            $li.append($close);
-        }
         $.get(options.href, (html) => {
+            // tab
+            let $li = $(li);
+            $titElem.append($li);
+            if (allowClose
+                && !$li.find('.' + CLOSE)[0]) {
+                let $close = $('<i class="layui-icon layui-unselect ' + CLOSE + '">&#x1006;</i>');
+                $close.on('click', call.tabDelete);
+                $li.append($close);
+            }
 
             // content
             $contElem.children('.layui-tab-item').removeClass(SHOW);
