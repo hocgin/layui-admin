@@ -5,23 +5,31 @@
       "type": "menu",
       "title": "所有商品",
       "jump": "javascript:;;",
+      "icon": "<i class=\"layui-icon layui-icon-component\"></i>",
+      "attr": "",
       "list": [
         {
           "type": "button",
           "title": "列表一",
           "jump": "javascript:;;",
+          "icon": "",
+          "attr": "",
           "list": []
         },
         {
           "type": "button",
           "title": "列表二",
           "jump": "javascript:;;",
+          "icon": "",
+          "attr": "",
           "list": []
         },
         {
           "type": "button",
           "title": "列表三",
           "jump": "javascript:;;",
+          "icon": "",
+          "attr": "",
           "list": []
         }
       ]
@@ -30,12 +38,14 @@
       "type": "menu",
       "title": "菜单2",
       "jump": "javascript:;;",
+      "icon": "",
       "list": [
         {
           "type": "button",
           "title": "Demo",
           "attr": "data-menu",
           "jump": "pages/demo.html",
+          "icon": "",
           "list": []
         },
         {
@@ -43,6 +53,7 @@
           "title": "Baidu",
           "jump": "pages/demo/baidu.html",
           "attr": "data-menu",
+          "icon": "",
           "list": []
         }
       ]
@@ -52,6 +63,7 @@
       "title": "时间线",
       "jump": "pages/timeline.html",
       "attr": "data-menu",
+      "icon": "",
       "list": []
     }
   ]

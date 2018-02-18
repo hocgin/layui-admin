@@ -88,7 +88,7 @@
                     {{# layui.each(d, (i, result)=>{ }}
                     <li class="layui-nav-item">
                         <a href="{{result.jump}}" {{result.attr}}>
-                            <i class="layui-icon layui-icon-website"></i>
+                            {{ result.icon }}
                             <cite>{{result.title}}</cite>
                         </a>
                         {{#
@@ -98,7 +98,12 @@
                             {{#
                             layui.each(result.list, (i, result) => {
                             }}
-                            <dd><a href="{{result.jump}}" {{result.attr}}>{{result.title}}</a></dd>
+                            <dd>
+                                <a href="{{result.jump}}" {{result.attr}}>
+                                    {{ result.icon }}
+                                    <cite>{{result.title}}</cite>
+                                </a>
+                            </dd>
                             {{#
                             });}}
                         </dl>
