@@ -1,7 +1,8 @@
-layui.define(['jquery', 'element', 'laytpl'], (exports) => {
+layui.define(['jquery', 'element', 'laytpl', 'layer'], (exports) => {
     let $ = layui.$,
         element = layui.element,
         laytpl = layui.laytpl,
+        layer = layui.layer,
         INDEX_URL = 'pages/demo.html',
         MENU_URL = './dist/store/menu.json',
 
